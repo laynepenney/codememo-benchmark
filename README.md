@@ -7,7 +7,7 @@ dependencies to exact versions so results can be independently verified.
 
 | System | Factual | Debug | Architecture | Temporal | Convention | Cross-Session | **Overall** |
 |--------|---------|-------|-------------|----------|------------|---------------|-------------|
-| **synapt v0.5.2** (local 3B) | **97.14** | **100.0** | 92.86 | **90.91** | **80.0** | **86.36** | **90.51** |
+| **synapt v0.6.2** (local 3B) | **97.14** | **100.0** | 92.86 | **90.91** | **80.0** | **86.36** | **90.51** |
 | Mem0 v1.0.5 (OpenAI cloud) | 72.73 | 77.78 | **100.0** | 87.50 | 42.86 | 71.43 | **76.0** |
 
 158 questions across 3 coding projects, 6 categories. Same gpt-4o-mini judge for both.
@@ -37,7 +37,7 @@ gr run benchmark-mem0     # mem0 only
 
 | Component | Version | Commit |
 |-----------|---------|--------|
-| synapt | v0.5.2 | `cc32627` |
+| synapt | v0.6.2 | `cc32627` |
 | synapt-private | eval code | `7dc154b` |
 | mem0 | v1.0.5 | tag `v1.0.5` |
 | mem0ai (pip) | 1.0.5 | — |

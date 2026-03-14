@@ -14,7 +14,7 @@ repos:
   synapt:
     url: git@github.com:laynepenney/synapt.git
     path: ./synapt
-    revision: cc32627d7b70ae967d470922b5692fd62be08e9a  # v0.5.2 (sub-chunk splitting + link expansion)
+    revision: v0.6.2  # sub-chunk splitting + link expansion + two-tier cap
 
   synapt-private:
     url: git@github.com:laynepenney/synapt-private.git
@@ -45,7 +45,7 @@ workspace:
 
     benchmark: |
       echo "============================================================"
-      echo "CodeMemo Benchmark — synapt v0.5.2 vs Mem0 v1.0.5"
+      echo "CodeMemo Benchmark — synapt v0.6.2 vs Mem0 v1.0.5"
       echo "============================================================"
       echo ""
       echo "--- synapt (local 3B, no cloud for memory) ---"
