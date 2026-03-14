@@ -14,17 +14,17 @@ repos:
   synapt:
     url: git@github.com:laynepenney/synapt.git
     path: ./synapt
-    revision: v0.6.2  # sub-chunk splitting + link expansion + two-tier cap
+    revision: v0.6.2
 
   synapt-private:
     url: git@github.com:laynepenney/synapt-private.git
     path: ./synapt-private
-    revision: 7dc154bc734301e174b33f31ad527d76f0611ffc  # CodeMemo eval + competitor adapters
+    revision: 7dc154bc734301e174b33f31ad527d76f0611ffc
 
   mem0:
     url: https://github.com/mem0ai/mem0.git
     path: ./reference/mem0
-    revision: v1.0.5  # mem0ai==1.0.5, tested 2026-03-14
+    revision: v1.0.5
     reference: true
 
 workspace:
@@ -32,39 +32,43 @@ workspace:
     PYTHONPATH: "./synapt/src:./synapt-private"
 
   scripts:
-    setup: |
-      echo "Installing dependencies..."
-      pip install -e ./synapt
-      pip install -e ./synapt-private
-      pip install mem0ai==1.0.5
-      echo ""
-      echo "Requires OPENAI_API_KEY for answer generation + judging."
-      echo "Mem0 also uses OpenAI for memory extraction + embeddings."
-      echo ""
-      echo "Run: gr run benchmark"
+    setup:
+      command: |
+        echo "Installing dependencies..."
+        pip install -e ./synapt
+        pip install -e ./synapt-private
+        pip install mem0ai==1.0.5
+        echo ""
+        echo "Requires OPENAI_API_KEY for answer generation + judging."
+        echo "Mem0 also uses OpenAI for memory extraction + embeddings."
+        echo ""
+        echo "Run: gr run benchmark"
 
-    benchmark: |
-      echo "============================================================"
-      echo "CodeMemo Benchmark — synapt v0.6.2 vs Mem0 v1.0.5"
-      echo "============================================================"
-      echo ""
-      echo "--- synapt (local 3B, no cloud for memory) ---"
-      cd synapt-private
-      python -m evaluation.codememo.eval --recalldb --output /tmp/codememo-bench-synapt
-      echo ""
-      echo "--- Mem0 (OpenAI cloud for memory) ---"
-      python -m evaluation.codememo.competitor_eval --system mem0 --output /tmp/codememo-bench-mem0
-      echo ""
-      echo "============================================================"
-      echo "Results:"
-      echo "  synapt: /tmp/codememo-bench-synapt/codememo_summary.json"
-      echo "  mem0:   /tmp/codememo-bench-mem0/codememo_summary.json"
-      echo "============================================================"
+    benchmark:
+      command: |
+        echo "============================================================"
+        echo "CodeMemo Benchmark — synapt v0.6.2 vs Mem0 v1.0.5"
+        echo "============================================================"
+        echo ""
+        echo "--- synapt (local 3B, no cloud for memory) ---"
+        cd synapt-private
+        python -m evaluation.codememo.eval --recalldb --output /tmp/codememo-bench-synapt
+        echo ""
+        echo "--- Mem0 (OpenAI cloud for memory) ---"
+        python -m evaluation.codememo.competitor_eval --system mem0 --output /tmp/codememo-bench-mem0
+        echo ""
+        echo "============================================================"
+        echo "Results:"
+        echo "  synapt: /tmp/codememo-bench-synapt/codememo_summary.json"
+        echo "  mem0:   /tmp/codememo-bench-mem0/codememo_summary.json"
+        echo "============================================================"
 
-    benchmark-synapt: |
-      cd synapt-private
-      python -m evaluation.codememo.eval --recalldb --output /tmp/codememo-bench-synapt
+    benchmark-synapt:
+      command: |
+        cd synapt-private
+        python -m evaluation.codememo.eval --recalldb --output /tmp/codememo-bench-synapt
 
-    benchmark-mem0: |
-      cd synapt-private
-      python -m evaluation.codememo.competitor_eval --system mem0 --output /tmp/codememo-bench-mem0
+    benchmark-mem0:
+      command: |
+        cd synapt-private
+        python -m evaluation.codememo.competitor_eval --system mem0 --output /tmp/codememo-bench-mem0
