@@ -18,12 +18,6 @@ repos:
     path: ./synapt
     revision: v0.6.2
 
-  mem0:
-    url: https://github.com/mem0ai/mem0.git
-    path: ./reference/mem0
-    revision: v1.0.5
-    reference: true
-
 workspace:
   env:
     PYTHONPATH: "./synapt/src:./synapt"
