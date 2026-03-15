@@ -16,7 +16,7 @@ dependencies to exact versions so results can be independently verified.
 
 ```bash
 # Clone this benchmark workspace
-gr init git@github.com:laynepenney/codememo-benchmark.git
+gr init https://github.com/laynepenney/codememo-benchmark.git
 cd codememo-benchmark
 
 # Install dependencies
